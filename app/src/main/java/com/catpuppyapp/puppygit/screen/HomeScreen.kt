@@ -50,6 +50,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
+import com.catpuppyapp.puppygit.compose.BottomNavBar
 import com.catpuppyapp.puppygit.compose.ChangelogDialog
 import com.catpuppyapp.puppygit.compose.ConfirmDialog3
 import com.catpuppyapp.puppygit.compose.FilterTextField
@@ -1272,6 +1273,22 @@ fun HomeScreen(
                         }
                     },
                     scrollBehavior = homeTopBarScrollBehavior,
+                )
+            },
+            bottomBar = {
+                val isVisible = homeTopBarScrollBehavior.state.collapsedFraction < 0.5f
+
+                BottomNavBar(
+                    currentHomeScreen = currentHomeScreen,
+                    isVisible = isVisible,
+                    openDrawer = openDrawer,
+                    goToRepoPage = { goToRepoPage("") },
+                    goToChangeListPage = { goToChangeListPage(changeListCurRepo.value) },
+                    goToEditorPage = {
+                        currentHomeScreen.intValue = Cons.selectedItem_Editor
+                        editorPageShowingFileIsReady.value = false
+                        changeStateTriggerRefreshPage(needRefreshEditorPage)
+                    }
                 )
             },
             floatingActionButton = {
