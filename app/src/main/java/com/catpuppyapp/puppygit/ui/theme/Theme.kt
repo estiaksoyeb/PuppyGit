@@ -179,8 +179,12 @@ fun PuppyGitAndroidTheme(
             val activity = view.context.findActivity()
             if(activity != null) {
                 val window = activity.window
-                window.statusBarColor = colorScheme.primary.toArgb()
-                WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+                window.statusBarColor = colorScheme.primaryContainer.toArgb()
+                window.navigationBarColor = colorScheme.surfaceContainer.toArgb()
+
+                val insetsController = WindowCompat.getInsetsController(window, view)
+                insetsController.isAppearanceLightStatusBars = !darkTheme
+                insetsController.isAppearanceLightNavigationBars = !darkTheme
             }
         }
     }
