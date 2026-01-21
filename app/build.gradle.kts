@@ -56,7 +56,8 @@ android {
             useSupportLibrary = true
         }
         ndk {
-            abiFilters += listOf("arm64-v8a","x86_64","x86","armeabi-v7a")
+//          abiFilters += listOf("arm64-v8a","x86_64","x86","armeabi-v7a")
+            abiFilters += listOf("arm64-v8a")
         }
 
 //        resourceConfigurations.plus(listOf("en", "zh-rCN"))
