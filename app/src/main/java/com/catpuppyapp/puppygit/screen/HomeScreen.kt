@@ -1276,7 +1276,8 @@ fun HomeScreen(
                 )
             },
             bottomBar = {
-                val isVisible = homeTopBarScrollBehavior.state.collapsedFraction < 0.5f
+                val isSelectionMode = changeListIsFileSelectionMode.value || filesPageIsFileSelectionMode.value || reposPageIsSelectionMode.value || editorRecentFileListSelectionMode.value
+                val isVisible = homeTopBarScrollBehavior.state.collapsedFraction < 0.5f && !isSelectionMode
 
                 BottomNavBar(
                     currentHomeScreen = currentHomeScreen,
