@@ -3283,29 +3283,6 @@ private fun NaviButton(
                 }
 
                 Spacer(Modifier.height(20.dp))
-
-                // show revert for worktreeToIndex
-                SingleLineCardButton(
-                    text = stringResource(R.string.revert),
-                    enabled = true
-                ) onClick@{
-                    val targetIndex = curItemIndex.intValue
-                    val targetItem = getCurItem() ?: return@onClick
-
-                    targetChangeListItemState.value = targetItem.toChangeListItem()
-                    targetIndexState.intValue = targetIndex
-
-                    if(isMultiMode) {
-                        initRevertDialog(diffableItemList.map { it.toChangeListItem() }) {}
-                    }else {
-                        initRevertDialog(listOf(targetChangeListItemState.value)) {
-                            // callback
-                            doActThenSwitchItem(targetIndexState.intValue, targetItem) {}
-                        }
-                    }
-                }
-
-                Spacer(Modifier.height(20.dp))
             }else if(fromTo == Cons.gitDiffFromHeadToIndex) {  // show unstage for indexToHead
                 SingleLineCardButton(
                     text = stringResource(R.string.unstage),
