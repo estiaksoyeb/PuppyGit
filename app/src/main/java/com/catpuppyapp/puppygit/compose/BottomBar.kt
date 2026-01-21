@@ -350,7 +350,16 @@ fun BottomBar(
                                     MyHorizontalDivider()
                                 }
 
+                                val bgColor = if (text == stringResource(R.string.revert)) {
+                                    MyStyleKt.ChangeListItemColor.changeTypeDeleted.copy(alpha = 0.3f)
+                                } else if (text == stringResource(R.string.stage)) {
+                                    MyStyleKt.ChangeListItemColor.changeTypeAdded.copy(alpha = 0.3f)
+                                } else {
+                                    Color.Transparent
+                                }
+
                                 DropdownMenuItem(
+                                    modifier = Modifier.background(bgColor),
                                     enabled = moreItemEnableList[idx](),
                                     text = { Text(text) },
                                     onClick = {
