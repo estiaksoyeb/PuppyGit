@@ -1282,13 +1282,15 @@ fun HomeScreen(
                 BottomNavBar(
                     currentHomeScreen = currentHomeScreen,
                     isVisible = isVisible,
-                    openDrawer = openDrawer,
                     goToRepoPage = { goToRepoPage("") },
                     goToChangeListPage = { goToChangeListPage(changeListCurRepo.value) },
                     goToEditorPage = {
                         currentHomeScreen.intValue = Cons.selectedItem_Editor
                         editorPageShowingFileIsReady.value = false
                         changeStateTriggerRefreshPage(needRefreshEditorPage)
+                    },
+                    goToFilesPage = {
+                        goToFilesPage(filesGetCurrentPath())
                     }
                 )
             },
